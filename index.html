@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindMatters: Mental Health Companion</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MindMatters: Mental Health Companion</h1>
+    </header>
+
+    <main>
+      <div id="welcome-page" class="active-page">
+        <div class="nav-buttons">
+          <button id="diary-btn">Diary</button>
+          <button id="analysis-btn">Sentiment Analysis</button>
+        </div>
+      </div>
+
+      <div id="diary-page" class="page">
+        <h2>Mood Diary</h2>
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <button id="prev-month">&lt;</button>
+            <h3 id="month-year"></h3>
+            <button id="next-month">&gt;</button>
+          </div>
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div id="calendar-days" class="calendar-days"></div>
+        </div>
+        <button id="back-to-welcome" class="back-btn">Back</button>
+      </div>
+
+      <div id="analysis-page" class="page">
+        <h2>Sentiment Analysis</h2>
+        <div class="analysis-options">
+          <div class="period-selection">
+            <button id="ten-days" class="period-btn active">10 Days</button>
+            <button id="thirty-days" class="period-btn">30 Days</button>
+          </div>
+          <div class="date-selection">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" />
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="sentiment-chart"></canvas>
+          <div id="no-data-message" class="hidden">
+            Not enough data for analysis. Please add more diary entries.
+          </div>
+        </div>
+        <button id="back-from-analysis" class="back-btn">Back</button>
+      </div>
+    </main>
+
+    <!-- Modal Templates -->
+    <div id="modal-overlay" class="hidden"></div>
+
+    <div id="emoji-modal" class="modal hidden">
+      <h3>How are you feeling today?</h3>
+      <div class="emoji-container">
+        <div class="emoji" data-value="5">😄</div>
+        <div class="emoji" data-value="4">😊</div>
+        <div class="emoji" data-value="3">😐</div>
+        <div class="emoji" data-value="2">😔</div>
+        <div class="emoji" data-value="1">😢</div>
+      </div>
+    </div>
+
+    <div id="slider-modal" class="modal hidden">
+      <h3>Rate your mood</h3>
+      <div class="slider-container">
+        <input
+          type="range"
+          id="mood-slider"
+          min="1"
+          max="5"
+          step="1"
+          value="3"
+        />
+        <div class="slider-labels">
+          <span>Negative</span>
+          <span>Positive</span>
+        </div>
+        <div class="slider-value">Level: <span id="slider-value">3</span></div>
+      </div>
+      <button id="slider-continue">Continue</button>
+    </div>
+
+    <div id="text-modal" class="modal hidden">
+      <h3>Write about your day (optional)</h3>
+      <textarea id="diary-text" placeholder="How was your day?"></textarea>
+      <button id="save-entry">Save Entry</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
